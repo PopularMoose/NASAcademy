@@ -17,7 +17,7 @@ namespace NASA.Infrastructure.Data.Configuration
                 new Course()
                  {
                       Id = 1,
-                      Title = "Phycis for Beginners",
+                      Title = "Physics for Beginners",
                       Description = "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes" +
                       "'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more",
                       PricePerCourse = 100.00M,
