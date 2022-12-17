@@ -18,7 +18,9 @@ namespace NASA.Core.Models.Course
         [StringLength(500, MinimumLength = 50)]
         public string Description { get; set; } = null!;
 
-      
+        [Required]
+        [Display(Name = "Image URL")]
+        public string ImageUrl { get; set; } = null!;
 
         [Required]
         [Display(Name = "Price per course")]

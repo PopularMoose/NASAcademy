@@ -143,15 +143,15 @@ namespace NASA.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "605a56bb-2fc7-4399-aa81-4e3b35ebbf8b",
+                            ConcurrencyStamp = "bc55ce07-62cb-4b15-8004-fcd2c35e60bd",
                             Email = "agent@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "agent@mail.com",
                             NormalizedUserName = "agent@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIDeromH/1JKOYojkiQS3Lk2b8UBmGWvGP9LwwBy2T0NKF7oB6YaXNRUnel8bPqfng==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED5/Et9sYND45vjpsEtd9A9bFsBRTJrYit7YTmLcdLx+lpan6+iUSKXXighFmHU2+g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "afb23c56-ee16-4330-b435-8ffed2f34ee0",
+                            SecurityStamp = "33fab2c3-4b18-4dec-aad0-5ced6ec1c8c4",
                             TwoFactorEnabled = false,
                             UserName = "agent@mail.com"
                         },
@@ -159,15 +159,15 @@ namespace NASA.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3fedfbd2-28d9-4877-9213-efd5725cab67",
+                            ConcurrencyStamp = "a179d5b8-6566-4964-84e0-9f82a378ec9e",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJDRsz9Y4HiIXC3OKg9m3vyklybeZmQEL80uUuly7sV3i8MQuT49xww6u2csKJvabQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO+waCFhzVD18R6/NO5T5g5e++DcAGLdAVOadNXz2SLuKBB2YxG34lQZe+OlG8zITw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "49390d6c-4c16-486a-bafd-01efbe654096",
+                            SecurityStamp = "9932cc02-5cb4-46c7-9adb-324dd193a130",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         });
@@ -309,6 +309,11 @@ namespace NASA.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -343,6 +348,7 @@ namespace NASA.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Description = "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more",
+                            ImageUrl = "https://www.furman.edu/academics/physics/wp-content/uploads/sites/103/2019/10/physics-1.jpg",
                             IsActive = true,
                             PricePerCourse = 100.00m,
                             StudentId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
@@ -354,6 +360,7 @@ namespace NASA.Infrastructure.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Description = "Course 'Math for Beginners' gives people basic understanding of math needed for further specialization in NASAcademy.The course includes'Rational Numbers','IRational Numbers','Real Numbers','Prime Numbers','Composite Numbers' and many more",
+                            ImageUrl = "https://assets.nautil.us/sites/3/nautilus/Landau_BREAKER.png?auto=compress&fm=png",
                             IsActive = true,
                             PricePerCourse = 100.00m,
                             TeacherId = 1,
@@ -364,6 +371,7 @@ namespace NASA.Infrastructure.Migrations
                             Id = 3,
                             CategoryId = 1,
                             Description = "Course 'Biology for Beginners' gives people basic understanding of biology needed for further specialization in NASAcademy.The course includes'Life','Cells','Evolution','Genes','Homeostasis' and many more",
+                            ImageUrl = "https://as1.ftcdn.net/v2/jpg/04/07/37/74/1000_F_407377427_cAi21m47R3TLy1vulqo0W7P9aWV9eiQ7.jpg",
                             IsActive = true,
                             PricePerCourse = 100.00m,
                             TeacherId = 1,
@@ -374,6 +382,7 @@ namespace NASA.Infrastructure.Migrations
                             Id = 4,
                             CategoryId = 2,
                             Description = "'Engineering Introduction' provides basic understanding of 'Mechatronics','Electronics','Robot Systems','Software Engineering','Chemical and Biotechnoly Engineering' and many more",
+                            ImageUrl = "https://c1.wallpaperflare.com/preview/457/57/127/technical-drawing-calipers-workshop-mechanical-engineering.jpg",
                             IsActive = true,
                             PricePerCourse = 450.00m,
                             TeacherId = 1,
@@ -384,6 +393,7 @@ namespace NASA.Infrastructure.Migrations
                             Id = 5,
                             CategoryId = 2,
                             Description = "'Aviation Introduction' provides basic understanding of 'Principles of Flight','Airframe and Systems','Airline Operations','Air Traffic Services','Airline & Airport Marketing Management' and many more",
+                            ImageUrl = "https://assets.oneweb.net/s3fs-public/styles/hero_xl_fallback/public/2022-01/2.4_aviation_hero.jpg?itok=Da1Na7Ar",
                             IsActive = true,
                             PricePerCourse = 450.00m,
                             TeacherId = 1,
@@ -394,6 +404,7 @@ namespace NASA.Infrastructure.Migrations
                             Id = 6,
                             CategoryId = 3,
                             Description = "'Practise with Air-crafts' physical trainning and understanding of the air-craft model ",
+                            ImageUrl = "https://st2.depositphotos.com/1741969/6592/i/600/depositphotos_65926649-stock-photo-close-up-photo-of-womans.jpg",
                             IsActive = true,
                             PricePerCourse = 1000.00m,
                             TeacherId = 1,

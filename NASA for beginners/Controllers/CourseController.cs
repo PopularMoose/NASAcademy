@@ -147,7 +147,7 @@ namespace NASA_for_beginners.Controllers
             var model = new CourseModel()
             {
                 Id = id,
-                
+                ImageUrl = course.ImageUrl,
                 CategoryId = categoryId,    
                 Description = course.Description,
                
@@ -216,8 +216,8 @@ namespace NASA_for_beginners.Controllers
             var course = await courseService.CourseDetailsById(id);
             var model = new CourseDetailsView()
             {
-                
 
+                ImageUrl = course.ImageUrl,
                 Title = course.Title
             };
 

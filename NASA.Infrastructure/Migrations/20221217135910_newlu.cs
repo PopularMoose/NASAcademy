@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NASA.Infrastructure.Migrations
 {
-    public partial class FinalMigration : Migration
+    public partial class newlu : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,9 +28,6 @@ namespace NASA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -177,6 +174,7 @@ namespace NASA.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
@@ -198,6 +196,7 @@ namespace NASA.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     PricePerCourse = table.Column<decimal>(type: "money", precision: 18, scale: 2, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
@@ -229,11 +228,11 @@ namespace NASA.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "c3acdb9c-b243-4f65-97e2-1c9269dacd7c", "guest@mail.com", false, null, true, null, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEFlt+Tg8NmZ9bdF0+mJntApE8EQ11qSr99RwnozyrDD4Ube3cJRX5XUf+MSbyrBz5A==", null, false, null, false, "guest@mail.com" },
-                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "f0e066b6-055e-4481-bf0c-90945444892d", "agent@mail.com", false, null, true, null, false, null, "agent@mail.com", "agent@mail.com", "AQAAAAEAACcQAAAAEEaBi1boG0jcgv8zGllEknj6W6XHIREDsr4TSu9s22oZ97n+4hV+YMSru1ubKLS3nQ==", null, false, null, false, "agent@mail.com" }
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "a179d5b8-6566-4964-84e0-9f82a378ec9e", "guest@mail.com", false, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEO+waCFhzVD18R6/NO5T5g5e++DcAGLdAVOadNXz2SLuKBB2YxG34lQZe+OlG8zITw==", null, false, "9932cc02-5cb4-46c7-9adb-324dd193a130", false, "guest@mail.com" },
+                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "bc55ce07-62cb-4b15-8004-fcd2c35e60bd", "agent@mail.com", false, false, null, "agent@mail.com", "agent@mail.com", "AQAAAAEAACcQAAAAED5/Et9sYND45vjpsEtd9A9bFsBRTJrYit7YTmLcdLx+lpan6+iUSKXXighFmHU2+g==", null, false, "33fab2c3-4b18-4dec-aad0-5ced6ec1c8c4", false, "agent@mail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -248,20 +247,20 @@ namespace NASA.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teachers",
-                columns: new[] { "Id", "Name", "PhoneNumber", "UserId" },
-                values: new object[] { 1, "Petyr", "+359888888888", "dea12856-c198-4129-b3f3-b893d8395082" });
+                columns: new[] { "Id", "Email", "Name", "PhoneNumber", "UserId" },
+                values: new object[] { 1, "Email@mail.com", "Petyr", "+359888888888", "dea12856-c198-4129-b3f3-b893d8395082" });
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "CategoryId", "Description", "IsActive", "PricePerCourse", "StudentId", "TeacherId", "Title" },
+                columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "IsActive", "PricePerCourse", "StudentId", "TeacherId", "Title" },
                 values: new object[,]
                 {
-                    { 1, 3, "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more", true, 100.00m, "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 1, "Phycis for Beginners" },
-                    { 2, 3, "Course 'Math for Beginners' gives people basic understanding of math needed for further specialization in NASAcademy.The course includes'Rational Numbers','IRational Numbers','Real Numbers','Prime Numbers','Composite Numbers' and many more", true, 100.00m, null, 1, "Math for Beginners" },
-                    { 3, 3, "Course 'Biology for Beginners' gives people basic understanding of biology needed for further specialization in NASAcademy.The course includes'Life','Cells','Evolution','Genes','Homeostasis' and many more", true, 100.00m, null, 1, "Biology for Beginners" },
-                    { 4, 2, "'Engineering Introduction' provides basic understanding of 'Mechatronics','Electronics','Robot Systems','Software Engineering','Chemical and Biotechnoly Engineering' and many more", true, 450.00m, null, 1, "Engineering Introduction" },
-                    { 5, 2, "'Aviation Introduction' provides basic understanding of 'Principles of Flight','Airframe and Systems','Airline Operations','Air Traffic Services','Airline & Airport Marketing Management' and many more", true, 450.00m, null, 1, "Aviation Introduction" },
-                    { 6, 3, "'Practise with Air-crafts' physical trainning and understanding of the air-craft model ", true, 1000.00m, null, 1, "Practise with Air-crafts" }
+                    { 1, 1, "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more", "https://www.furman.edu/academics/physics/wp-content/uploads/sites/103/2019/10/physics-1.jpg", true, 100.00m, "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 1, "Phycis for Beginners" },
+                    { 2, 1, "Course 'Math for Beginners' gives people basic understanding of math needed for further specialization in NASAcademy.The course includes'Rational Numbers','IRational Numbers','Real Numbers','Prime Numbers','Composite Numbers' and many more", "https://assets.nautil.us/sites/3/nautilus/Landau_BREAKER.png?auto=compress&fm=png", true, 100.00m, null, 1, "Math for Beginners" },
+                    { 3, 1, "Course 'Biology for Beginners' gives people basic understanding of biology needed for further specialization in NASAcademy.The course includes'Life','Cells','Evolution','Genes','Homeostasis' and many more", "https://as1.ftcdn.net/v2/jpg/04/07/37/74/1000_F_407377427_cAi21m47R3TLy1vulqo0W7P9aWV9eiQ7.jpg", true, 100.00m, null, 1, "Biology for Beginners" },
+                    { 4, 2, "'Engineering Introduction' provides basic understanding of 'Mechatronics','Electronics','Robot Systems','Software Engineering','Chemical and Biotechnoly Engineering' and many more", "https://c1.wallpaperflare.com/preview/457/57/127/technical-drawing-calipers-workshop-mechanical-engineering.jpg", true, 450.00m, null, 1, "Engineering Introduction" },
+                    { 5, 2, "'Aviation Introduction' provides basic understanding of 'Principles of Flight','Airframe and Systems','Airline Operations','Air Traffic Services','Airline & Airport Marketing Management' and many more", "https://assets.oneweb.net/s3fs-public/styles/hero_xl_fallback/public/2022-01/2.4_aviation_hero.jpg?itok=Da1Na7Ar", true, 450.00m, null, 1, "Aviation Introduction" },
+                    { 6, 3, "'Practise with Air-crafts' physical trainning and understanding of the air-craft model ", "https://st2.depositphotos.com/1741969/6592/i/600/depositphotos_65926649-stock-photo-close-up-photo-of-womans.jpg", true, 1000.00m, null, 1, "Practise with Air-crafts" }
                 });
 
             migrationBuilder.CreateIndex(

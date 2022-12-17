@@ -9,7 +9,9 @@ namespace NASA.Core.Models.Course
 
         public string Title { get; init; } = null!;
 
-       
+
+        [Display(Name = "Image URL")]
+        public string ImageUrl { get; init; } = null!;
 
         [Display(Name = "Price per course")]
         public decimal PricePerCourse { get; init; }

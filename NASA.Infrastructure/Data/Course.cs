@@ -14,7 +14,11 @@ namespace NASA.Infrastructure.Data
         [StringLength(50)]
         public string Title { get; set; } = null!;
 
-       
+
+        [Required]
+        [StringLength(200)]
+        public string ImageUrl { get; set; } = null!;
+
 
         [Required]
         [StringLength(500)]

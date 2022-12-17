@@ -79,6 +79,7 @@ namespace NASA.Core.Services
                 {
                     Id = h.Id,
                     IsBooked = h.StudentId != null,
+                    ImageUrl = h.ImageUrl,
                     PricePerCourse = h.PricePerCourse,
                     Title = h.Title
                 })
@@ -118,7 +119,7 @@ namespace NASA.Core.Services
                 {
                     
                     Id = c.Id,
-                   
+                    ImageUrl = c.ImageUrl,
                     IsBooked = c.StudentId != null,
                     PricePerCourse = c.PricePerCourse,
                     Title = c.Title
@@ -135,7 +136,7 @@ namespace NASA.Core.Services
                 {
                   
                     Id = c.Id,
-                    
+                    ImageUrl = c.ImageUrl,
                     IsBooked = c.StudentId != null,
                     PricePerCourse = c.PricePerCourse,
                     Title = c.Title
@@ -156,8 +157,8 @@ namespace NASA.Core.Services
                 
                 CategoryId = model.CategoryId,
                 Description = model.Description,
-               
-                PricePerCourse= model.PricePerCourse,
+                ImageUrl = model.ImageUrl,
+                PricePerCourse = model.PricePerCourse,
                 Title = model.Title,
                 TeacherId = teacherId
             };
@@ -178,22 +179,22 @@ namespace NASA.Core.Services
 
         public async Task Delete(int courseId)
         {
-            var house = await repo.GetByIdAsync<Course>(courseId);
-            house.IsActive = false;
-
+            var course = await repo.GetByIdAsync<Course>(courseId);
+            course.IsActive = false;
+            
             await repo.SaveChangesAsync();
         }
 
         public async Task Edit(int courseId, CourseModel model)
         {
-            var house = await repo.GetByIdAsync<Course>(courseId);
+            var course = await repo.GetByIdAsync<Course>(courseId);
 
-            house.Description = model.Description;
-            
-            house.PricePerCourse = model.PricePerCourse;
-            house.Title = model.Title;
-            
-            house.CategoryId = model.CategoryId;
+            course.Description = model.Description;
+            course.ImageUrl = model.ImageUrl;
+            course.PricePerCourse = model.PricePerCourse;
+            course.Title = model.Title;
+
+            course.CategoryId = model.CategoryId;
 
             await repo.SaveChangesAsync();
         }
@@ -237,7 +238,7 @@ namespace NASA.Core.Services
                     Category = h.Category.Name,
                     Description = h.Description,
                     Id = id,
-                   
+                    ImageUrl = h.ImageUrl,
                     IsBooked = h.StudentId != null,
                     PricePerCourse= h.PricePerCourse,
                     Title = h.Title,
@@ -280,7 +281,7 @@ namespace NASA.Core.Services
                 .Select(h => new CourseHome() 
                 {
                     Id = h.Id,
-                   
+                    ImageUrl = h.ImageUrl,
                     Title = h.Title,
                    
                 })
