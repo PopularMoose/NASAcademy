@@ -28,6 +28,7 @@ namespace NASA.Infrastructure.Data.Configuration
                 NormalizedEmail = "agent@mail.com"
             };
 
+
             user.PasswordHash =
                  hasher.HashPassword(user, "agent123");
 
