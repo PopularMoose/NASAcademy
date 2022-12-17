@@ -13,6 +13,7 @@ namespace NASA.Infrastructure.Data.Configuration
             builder.HasData(CreateUsers());
         }
 
+
         private List<IdentityUser> CreateUsers()
         {
             var users = new List<IdentityUser>();
