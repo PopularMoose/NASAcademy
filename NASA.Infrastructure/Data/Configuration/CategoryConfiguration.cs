@@ -17,7 +17,7 @@ namespace NASA.Infrastructure.Data.Configuration
                 new Category()
                 {
                     Id = 1,
-                    Name = "Begginer"
+                    Name = "Beginner"
                 },
 
                 new Category()
