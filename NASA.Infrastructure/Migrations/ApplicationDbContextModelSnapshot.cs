@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NASA_for_beginners.Infrastructure.Data;
+using NASA.Infrastructure.Data;
 
 #nullable disable
 
@@ -17,7 +17,7 @@ namespace NASA.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -72,6 +72,105 @@ namespace NASA.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "dea12856-c198-4129-b3f3-b893d8395082",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "605a56bb-2fc7-4399-aa81-4e3b35ebbf8b",
+                            Email = "agent@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "agent@mail.com",
+                            NormalizedUserName = "agent@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIDeromH/1JKOYojkiQS3Lk2b8UBmGWvGP9LwwBy2T0NKF7oB6YaXNRUnel8bPqfng==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "afb23c56-ee16-4330-b435-8ffed2f34ee0",
+                            TwoFactorEnabled = false,
+                            UserName = "agent@mail.com"
+                        },
+                        new
+                        {
+                            Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3fedfbd2-28d9-4877-9213-efd5725cab67",
+                            Email = "guest@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "guest@mail.com",
+                            NormalizedUserName = "guest@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJDRsz9Y4HiIXC3OKg9m3vyklybeZmQEL80uUuly7sV3i8MQuT49xww6u2csKJvabQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "49390d6c-4c16-486a-bafd-01efbe654096",
+                            TwoFactorEnabled = false,
+                            UserName = "guest@mail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -159,117 +258,7 @@ namespace NASA.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("NASA_for_beginners.Infrastructure.Data.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "dea12856-c198-4129-b3f3-b893d8395082",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "50b9f544-369e-41af-8c53-15afc9db4681",
-                            Email = "agent@mail.com",
-                            EmailConfirmed = false,
-                            IsActive = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "agent@mail.com",
-                            NormalizedUserName = "agent@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG90LJGNprKkuqX0zMA7iFOxxbIR30VUVtRNkH4viu3ocaLF02xOWfdw77HUK0UpmA==",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "agent@mail.com"
-                        },
-                        new
-                        {
-                            Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2735af1c-bec9-4d26-b951-fbea6ee32009",
-                            Email = "guest@mail.com",
-                            EmailConfirmed = false,
-                            IsActive = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "guest@mail.com",
-                            NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMW4vbkDh1QSvfwx0t+tnbxsLlOoOTJe+avkGEZMcHYmmOdq+LdeRLbEiUWfbXBzbQ==",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "guest@mail.com"
-                        });
-                });
-
-            modelBuilder.Entity("NASA_for_beginners.Infrastructure.Data.Category", b =>
+            modelBuilder.Entity("NASA.Infrastructure.Data.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -304,7 +293,7 @@ namespace NASA.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("NASA_for_beginners.Infrastructure.Data.Course", b =>
+            modelBuilder.Entity("NASA.Infrastructure.Data.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -352,7 +341,7 @@ namespace NASA.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CategoryId = 3,
+                            CategoryId = 1,
                             Description = "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more",
                             IsActive = true,
                             PricePerCourse = 100.00m,
@@ -363,7 +352,7 @@ namespace NASA.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CategoryId = 3,
+                            CategoryId = 1,
                             Description = "Course 'Math for Beginners' gives people basic understanding of math needed for further specialization in NASAcademy.The course includes'Rational Numbers','IRational Numbers','Real Numbers','Prime Numbers','Composite Numbers' and many more",
                             IsActive = true,
                             PricePerCourse = 100.00m,
@@ -373,7 +362,7 @@ namespace NASA.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            CategoryId = 3,
+                            CategoryId = 1,
                             Description = "Course 'Biology for Beginners' gives people basic understanding of biology needed for further specialization in NASAcademy.The course includes'Life','Cells','Evolution','Genes','Homeostasis' and many more",
                             IsActive = true,
                             PricePerCourse = 100.00m,
@@ -412,13 +401,18 @@ namespace NASA.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("NASA_for_beginners.Infrastructure.Data.Teacher", b =>
+            modelBuilder.Entity("NASA.Infrastructure.Data.Teacher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -444,6 +438,7 @@ namespace NASA.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            Email = "Email@mail.com",
                             Name = "Petyr",
                             PhoneNumber = "+359888888888",
                             UserId = "dea12856-c198-4129-b3f3-b893d8395082"
@@ -461,7 +456,7 @@ namespace NASA.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -470,7 +465,7 @@ namespace NASA.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -485,7 +480,7 @@ namespace NASA.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -494,26 +489,26 @@ namespace NASA.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NASA_for_beginners.Infrastructure.Data.Course", b =>
+            modelBuilder.Entity("NASA.Infrastructure.Data.Course", b =>
                 {
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.Category", "Category")
+                    b.HasOne("NASA.Infrastructure.Data.Category", "Category")
                         .WithMany("Courses")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.ApplicationUser", "Student")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
 
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.Teacher", "Teacher")
+                    b.HasOne("NASA.Infrastructure.Data.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -526,9 +521,9 @@ namespace NASA.Infrastructure.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("NASA_for_beginners.Infrastructure.Data.Teacher", b =>
+            modelBuilder.Entity("NASA.Infrastructure.Data.Teacher", b =>
                 {
-                    b.HasOne("NASA_for_beginners.Infrastructure.Data.ApplicationUser", "User")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -537,7 +532,7 @@ namespace NASA.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NASA_for_beginners.Infrastructure.Data.Category", b =>
+            modelBuilder.Entity("NASA.Infrastructure.Data.Category", b =>
                 {
                     b.Navigation("Courses");
                 });

@@ -1,0 +1,41 @@
+﻿@model CourseServiceModel
+
+<div class="col-md-4">
+    <div class="card mb-3">
+       
+        <div class="card-body text-center">
+            <h4>@Model.Title</h4>
+     
+            <h6>
+                Price Per Month:
+                <b>@String.Format("{0:f2}", Model.PricePerCourse) BGN</b>
+            </h6>
+            <h6>(@(Model.IsBooked ? "Booked" : "Not Booked"))</h6>
+            <br />
+            <a asp-controller="Course" asp-action="Details" asp-route-id="@Model.Id" 
+            asp-route-information="@Model.GetInformation()" class="btn btn-success">Details</a>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Course" asp-action="Edit" asp-route-id="@Model.Id"
+               class="btn btn-warning">Edit</a>
+                <a asp-controller="Course" asp-action="Delete" asp-route-id="@Model.Id"
+               class="btn btn-danger">Delete</a>
+                <p></p>
+                @if (!Model.IsBooked)
+                {
+                    <form class="input-group-sm" asp-controller="Course"
+                  asp-action="Book" asp-route-id="@Model.Id" method="post">
+                        <input class="btn btn-primary" type="submit" value="Book" />
+                    </form>
+                }
+                else
+                {
+                    <form asp-controller="Course" asp-action="Leave"
+                  asp-route-id="@Model.Id" method="post">
+                        <input class="btn btn-primary" type="submit" value="Leave" />
+                    </form>
+                }
+            }
+        </div>
+    </div>
+</div>

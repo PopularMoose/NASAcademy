@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NASA_for_beginners.Infrastructure.Data
+namespace NASA.Infrastructure.Data
 {
     public class Course
     {
@@ -42,7 +42,7 @@ namespace NASA_for_beginners.Infrastructure.Data
         public string? StudentId { get; set; } 
 
         [ForeignKey(nameof(StudentId))]
-        public ApplicationUser? Student { get; set; }
+        public IdentityUser? Student { get; set; }
 
         public bool IsActive { get; set; } = true;
     }

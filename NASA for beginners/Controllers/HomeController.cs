@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NASA.Core.Contracts;
 using NASA_for_beginners.Models;
 using System.Diagnostics;
 
@@ -6,14 +7,19 @@ namespace NASA_for_beginners.Controllers
 {
     public class HomeController : Controller
     {
-     
-        
-        public IActionResult Index()
+        private readonly ICourseService courseService;
+
+        public HomeController(ICourseService _courseService)
         {
-            return View();
+            courseService = _courseService;
         }
 
-       
+        public async Task<IActionResult> Index()
+        {
+            var model = await courseService.LastThreeCourses();
+
+            return View(model);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

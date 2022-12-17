@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NASA_for_beginners.Infrastructure.Data
+namespace NASA.Infrastructure.Data
 {
     public class Category
     {

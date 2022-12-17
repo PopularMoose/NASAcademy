@@ -6,9 +6,13 @@
 
         Task<bool> TeacherWithPhoneNumberExists(string phoneNumber);
 
-        Task<bool> TeacherHasRents(string teacherId);
+        Task<bool> TeacherWithEmailExists(string emailaddress);
 
-        Task Create(string teacherId, string phoneNumber);
+        Task<bool> TeacherWithNameExists(string name);
+
+        Task<bool> TeacherHasCourses(string teacherId);
+
+        Task Create(string teacherId, string phoneNumber, string emailaddress, string name);
 
         Task<int> GetTeacherId(string teacherId);
     }

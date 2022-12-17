@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace NASA_for_beginners.Infrastructure.Data
+namespace NASA.Infrastructure.Data
 {
     public class ApplicationUser : IdentityUser<string>
     {

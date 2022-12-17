@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace NASA_for_beginners.Infrastructure.Data.Configuration
+namespace NASA.Infrastructure.Data.Configuration
 {
     internal class CourseConfiguration : IEntityTypeConfiguration<Course>
     {
@@ -21,7 +21,7 @@ namespace NASA_for_beginners.Infrastructure.Data.Configuration
                       Description = "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes" +
                       "'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more",
                       PricePerCourse = 100.00M,
-                      CategoryId = 3,
+                      CategoryId = 1,
                       TeacherId = 1,
                       StudentId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
                  },
@@ -35,7 +35,7 @@ namespace NASA_for_beginners.Infrastructure.Data.Configuration
                       "'Rational Numbers','IRational Numbers','Real Numbers','Prime Numbers','Composite Numbers' and many more",
 
                     PricePerCourse = 100.00M,
-                    CategoryId = 3,
+                    CategoryId = 1,
                     TeacherId = 1
                 },
 
@@ -48,7 +48,7 @@ namespace NASA_for_beginners.Infrastructure.Data.Configuration
                       "'Life','Cells','Evolution','Genes','Homeostasis' and many more",
 
                     PricePerCourse = 100.00M,
-                    CategoryId = 3,
+                    CategoryId = 1,
                     TeacherId = 1
                 },
 

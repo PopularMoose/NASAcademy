@@ -1,7 +1,10 @@
 
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NASA_for_beginners.Infrastructure.Data;
+using NASA.Infrastructure.Data;
+using NASA.Infrastructure.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,10 +24,17 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddControllersWithViews()
+   .AddMvcOptions(options =>
+    {
+        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+        
+    });
+builder.Services.AddApplicationServices();
+builder.Services.AddResponseCaching();
 
 
 
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -48,9 +58,24 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "default",
+      pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+
+    endpoints.MapControllerRoute(
+      name: "houseDetails",
+      pattern: "House/Details/{id}/{information}"
+    );
+
+    endpoints.MapRazorPages();
+});
 
 app.Run();

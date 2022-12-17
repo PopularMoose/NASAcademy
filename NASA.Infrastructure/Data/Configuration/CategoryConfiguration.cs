@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace NASA_for_beginners.Infrastructure.Data.Configuration
+namespace NASA.Infrastructure.Data.Configuration
 {
     internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
