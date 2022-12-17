@@ -7,6 +7,8 @@
                 
         }
 
+
+
         public NASAException(string errorMessage)
             : base(errorMessage)
         {
