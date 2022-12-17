@@ -10,6 +10,8 @@
                     new NASAException() :
                     new NASAException(errorMessage);
                 
+
+
                 throw exception;
             }
         }
