@@ -29,8 +29,10 @@ namespace NASA.Core.Services.Admin
                 })
                 .ToListAsync();
 
+            string[] teacherIds = result.Select(a => a.UserId).ToArray();
+
             result.AddRange(await repo.AllReadonly<ApplicationUser>()
-                .Where(u => result.Any(a => a.UserId == u.Id) == false)
+                .Where(u => teacherIds.Contains(u.Id)== false)
                 .Select(u => new UserServiceModel()
                 {
                     UserId = u.Id,
