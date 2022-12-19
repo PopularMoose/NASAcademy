@@ -5,6 +5,7 @@ using NASA.Core.Models.Course;
 using NASA_for_beginners.Models;
 using NASA_for_beginners.Extensions;
 using NASA.Core.Extensions;
+using static NASA_for_beginners.Areas.Constants.AdminConstants;
 
 namespace NASA_for_beginners.Controllers
 {
@@ -47,6 +48,11 @@ namespace NASA_for_beginners.Controllers
 
         public async Task<IActionResult> Mine()
         {
+            if (User.IsInRole(AdminRoleName))
+            {
+                return RedirectToAction("Mine", "Course", new { area = AreaName});
+            }
+
             IEnumerable<CourseServiceModel> myCourses;
             var userId = User.Id();
 
@@ -251,7 +257,7 @@ namespace NASA_for_beginners.Controllers
                 return RedirectToAction(nameof(All));
             }
 
-            if (await teacherService.ExistsById(User.Id()))
+            if (!User.IsInRole(AdminRoleName) && await teacherService.ExistsById(User.Id()))
             {
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }

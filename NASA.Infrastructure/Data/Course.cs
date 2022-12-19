@@ -46,7 +46,7 @@ namespace NASA.Infrastructure.Data
         public string? StudentId { get; set; } 
 
         [ForeignKey(nameof(StudentId))]
-        public IdentityUser? Student { get; set; }
+        public ApplicationUser? Student { get; set; }
 
         public bool IsActive { get; set; } = true;
     }

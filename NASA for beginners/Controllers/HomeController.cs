@@ -2,6 +2,7 @@
 using NASA.Core.Contracts;
 using NASA_for_beginners.Models;
 using System.Diagnostics;
+using static NASA_for_beginners.Areas.Constants.AdminConstants;
 
 namespace NASA_for_beginners.Controllers
 {
@@ -16,6 +17,10 @@ namespace NASA_for_beginners.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (User.IsInRole(AdminRoleName))
+            {
+                return RedirectToAction("Index", "Admin", new {area = "Admin"});
+            }
             var model = await courseService.LastThreeCourses();
 
             return View(model);
