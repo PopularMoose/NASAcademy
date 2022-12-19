@@ -3,7 +3,7 @@ using NASA.Core.Contracts.Admin;
 
 namespace NASA_for_beginners.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IUserService userService;
 
