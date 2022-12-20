@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NASA.Infrastructure.Migrations
 {
-    public partial class newlu : Migration
+    public partial class NewDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,9 @@ namespace NASA.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -228,11 +231,11 @@ namespace NASA.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "a179d5b8-6566-4964-84e0-9f82a378ec9e", "guest@mail.com", false, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEO+waCFhzVD18R6/NO5T5g5e++DcAGLdAVOadNXz2SLuKBB2YxG34lQZe+OlG8zITw==", null, false, "9932cc02-5cb4-46c7-9adb-324dd193a130", false, "guest@mail.com" },
-                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "bc55ce07-62cb-4b15-8004-fcd2c35e60bd", "agent@mail.com", false, false, null, "agent@mail.com", "agent@mail.com", "AQAAAAEAACcQAAAAED5/Et9sYND45vjpsEtd9A9bFsBRTJrYit7YTmLcdLx+lpan6+iUSKXXighFmHU2+g==", null, false, "33fab2c3-4b18-4dec-aad0-5ced6ec1c8c4", false, "agent@mail.com" }
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "6a586030-4320-440e-b879-67c0482097eb", "guest@mail.com", false, null, true, null, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEKzP1YZ8VjX962y72A0g4atjafun9aY0fDuRMniimjAIOc7qPTlLoFQ/s0YP9m/SJA==", null, false, null, false, "guest@mail.com" },
+                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "f401e1a8-d720-4aa0-85cb-f335f9bc2dae", "agent@mail.com", false, null, true, null, false, null, "agent@mail.com", "agent@mail.com", "AQAAAAEAACcQAAAAEDeLyk4wPxLg7wd/5JmviubGUE7HQg3xoy3ZWHk7BkrXY6/7FBRRO5oQ5Tsvx8CVnA==", null, false, null, false, "agent@mail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -240,7 +243,7 @@ namespace NASA.Infrastructure.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Begginer" },
+                    { 1, "Beginner" },
                     { 2, "Fundamentals" },
                     { 3, "Advanced" }
                 });
@@ -255,7 +258,7 @@ namespace NASA.Infrastructure.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "IsActive", "PricePerCourse", "StudentId", "TeacherId", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more", "https://www.furman.edu/academics/physics/wp-content/uploads/sites/103/2019/10/physics-1.jpg", true, 100.00m, "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 1, "Phycis for Beginners" },
+                    { 1, 1, "Course 'Physics for Beginners' gives people basic understanding of physics needed for further specialization in NASAcademy.The course includes'Laws of Motion','Energy','Electromagnetism','Inside the Atom','Waves' and many more", "https://www.furman.edu/academics/physics/wp-content/uploads/sites/103/2019/10/physics-1.jpg", true, 100.00m, "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 1, "Physics for Beginners" },
                     { 2, 1, "Course 'Math for Beginners' gives people basic understanding of math needed for further specialization in NASAcademy.The course includes'Rational Numbers','IRational Numbers','Real Numbers','Prime Numbers','Composite Numbers' and many more", "https://assets.nautil.us/sites/3/nautilus/Landau_BREAKER.png?auto=compress&fm=png", true, 100.00m, null, 1, "Math for Beginners" },
                     { 3, 1, "Course 'Biology for Beginners' gives people basic understanding of biology needed for further specialization in NASAcademy.The course includes'Life','Cells','Evolution','Genes','Homeostasis' and many more", "https://as1.ftcdn.net/v2/jpg/04/07/37/74/1000_F_407377427_cAi21m47R3TLy1vulqo0W7P9aWV9eiQ7.jpg", true, 100.00m, null, 1, "Biology for Beginners" },
                     { 4, 2, "'Engineering Introduction' provides basic understanding of 'Mechatronics','Electronics','Robot Systems','Software Engineering','Chemical and Biotechnoly Engineering' and many more", "https://c1.wallpaperflare.com/preview/457/57/127/technical-drawing-calipers-workshop-mechanical-engineering.jpg", true, 450.00m, null, 1, "Engineering Introduction" },
