@@ -7,6 +7,7 @@ namespace NASA.Infrastructure.Migrations
 {
     public partial class NewDataBase : Migration
     {
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
