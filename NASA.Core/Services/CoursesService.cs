@@ -275,7 +275,7 @@ namespace NASA.Core.Services
 
         public async Task<IEnumerable<CourseHome>> LastThreeCourses()
         {
-            return await repo.AllReadonly<Course>()
+            return  await repo.AllReadonly<Course>()
                 .Where(h => h.IsActive)
                 .OrderByDescending(h => h.Id)
                 .Select(h => new CourseHome() 
@@ -283,7 +283,7 @@ namespace NASA.Core.Services
                     Id = h.Id,
                     ImageUrl = h.ImageUrl,
                     Title = h.Title,
-                   
+                    
                 })
                 .Take(3)
                 .ToListAsync();
